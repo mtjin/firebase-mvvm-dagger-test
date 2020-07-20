@@ -1,5 +1,6 @@
 package com.mtjin.firebasemvvm.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -34,6 +35,7 @@ class MessageAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(message: Message) {
+            Log.d("FFFFMessageadapter", message.toString())
             binding.message = message
             binding.executePendingBindings()
         }

@@ -71,4 +71,5 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:2.25.2"
     kapt "com.google.dagger:dagger-compiler:2.27"
 
+    implementation 'com.google.firebase:firebase-analytics:17.4.4'
 }

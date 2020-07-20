@@ -10,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 class MainViewModel @Inject constructor(private val mainRepository: MainRepository) :
     BaseViewModel() {
@@ -27,7 +28,10 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    _messageList.value?.add(it)
+                    Log.d("FFFFGetMEssage", it.toString())
+                    val list : ArrayList<Message> = ArrayList()
+                    list.add(it)
+                    _messageList.value = list
                 }, {
                     Log.d("Error", it.message.toString())
                 })
