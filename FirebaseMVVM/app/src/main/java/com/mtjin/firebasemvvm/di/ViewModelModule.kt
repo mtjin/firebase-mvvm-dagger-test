@@ -11,5 +11,5 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(movieSearchViewModel: MainViewModel): ViewModel
+    abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
 }

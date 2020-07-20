@@ -11,5 +11,5 @@ interface MainComponent {
         fun create(): MainComponent
     }
 
-    fun inject(movieSearchActivity: MainActivity)
+    fun inject(mainActivity: MainActivity)
 }

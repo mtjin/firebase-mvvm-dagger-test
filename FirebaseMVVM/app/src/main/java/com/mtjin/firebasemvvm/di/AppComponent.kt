@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [ViewModelModule::class, ViewModelFactoryModule::class, AppSubComponentsModule::class]
+    modules = [ViewModelModule::class, ViewModelFactoryModule::class, AppSubComponentsModule::class, RepositoryModule::class, RemoteDataModule::class]
 )
 interface AppComponent {
     // Factory to create instances of the AppComponent
