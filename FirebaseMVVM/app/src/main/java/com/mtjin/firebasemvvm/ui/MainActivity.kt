@@ -13,27 +13,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private lateinit var messageAdapter: MessageAdapter
 
     //대거
-    lateinit var component: MainComponent
-    lateinit var viewModel: MainViewModel
+    lateinit var mainComponent: MainComponent
+    lateinit var mainViewModel: MainViewModel
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //대거
-        component =
+        mainComponent =
             (application as MyApplication).appComponent.mainComponent().create()
-        component.inject(this)
+        mainComponent.inject(this)
         super.onCreate(savedInstanceState)
         //대거
-        viewModel =
-            ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        binding.vm = viewModel
+        mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        binding.vm = mainViewModel
         initAdapter()
     }
 
-    fun initAdapter() {
+    private fun initAdapter() {
         messageAdapter = MessageAdapter()
         binding.rvItems.adapter = messageAdapter
+        mainViewModel.getMessages()
     }
 }
