@@ -15,6 +15,7 @@ import kotlin.collections.ArrayList
 class MainViewModel @Inject constructor(private val mainRepository: MainRepository) :
     BaseViewModel() {
     private var currentQuery: String = ""
+    val list : ArrayList<Message> = ArrayList()
 
 
     val query = MutableLiveData<String>()
@@ -29,7 +30,6 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     Log.d("FFFFGetMEssage", it.toString())
-                    val list : ArrayList<Message> = ArrayList()
                     list.add(it)
                     _messageList.value = list
                 }, {
