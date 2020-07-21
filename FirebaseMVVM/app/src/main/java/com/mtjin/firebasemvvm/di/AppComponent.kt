@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [ViewModelModule::class, ViewModelFactoryModule::class, AppSubComponentsModule::class, RepositoryModule::class,
-        RemoteDataModule::class]
+        RemoteDataModule::class, LocalDataModule::class, UtilsModule::class]
 )
 interface AppComponent {
     // Factory to create instances of the AppComponent
@@ -20,14 +20,4 @@ interface AppComponent {
     }
 
     fun mainComponent(): MainComponent.Factory
-
-//    fun loginLocalDataSource(): LoginLocalDataSourceImpl
-//
-//    fun movieLocalDataSource(): MovieLocalDataSourceImpl
-//
-//    fun movieRemoteDataSource(): MovieRemoteDataSourceImpl
-//
-//    fun networkManager(): NetworkManager
-//
-//    fun apiInterface(): ApiInterface
 }

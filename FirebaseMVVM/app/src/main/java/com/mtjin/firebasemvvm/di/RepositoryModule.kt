@@ -2,6 +2,7 @@ package com.mtjin.firebasemvvm.di
 
 import com.mtjin.firebasemvvm.data.source.MainRepository
 import com.mtjin.firebasemvvm.data.source.MainRepositoryImpl
+import com.mtjin.firebasemvvm.data.source.local.MainLocalDataSource
 import com.mtjin.firebasemvvm.data.source.remote.MainRemoteDataSource
 import dagger.Module
 import dagger.Provides
@@ -10,8 +11,9 @@ import dagger.Provides
 class RepositoryModule {
     @Provides
     fun provideMovieRepository(
-        mainRemoteDataSource: MainRemoteDataSource
+        mainRemoteDataSource: MainRemoteDataSource,
+        mainLocalDataSource: MainLocalDataSource
     ): MainRepository {
-        return MainRepositoryImpl(mainRemoteDataSource)
+        return MainRepositoryImpl(mainRemoteDataSource, mainLocalDataSource)
     }
 }

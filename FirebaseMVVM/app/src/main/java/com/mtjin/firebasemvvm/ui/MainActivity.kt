@@ -1,6 +1,8 @@
 package com.mtjin.firebasemvvm.ui
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mtjin.firebasemvvm.R
 import com.mtjin.firebasemvvm.base.BaseActivity
@@ -29,6 +31,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         binding.vm = mainViewModel
         initAdapter()
+        initViewModelCallback()
+    }
+
+    private fun initViewModelCallback() {
+        with(mainViewModel) {
+            networkState.observe(this@MainActivity, Observer {
+                showToast("네트워크가 끊켜 있습니다. 로컬에서 불러옵니다")
+            })
+        }
     }
 
     private fun initAdapter() {
