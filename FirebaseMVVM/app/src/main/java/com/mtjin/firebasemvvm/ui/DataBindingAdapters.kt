@@ -11,6 +11,7 @@ fun RecyclerView.setAdapterItems(items: List<Message>?) {
     with((adapter as MessageAdapter)) {
         Log.d("FFFFSetItems", items.toString())
         if (items != null) {
+            this.clear()
             this.addItems(items)
         }
 //        this.clear()

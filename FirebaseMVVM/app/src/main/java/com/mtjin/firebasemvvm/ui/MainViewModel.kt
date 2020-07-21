@@ -15,7 +15,7 @@ import kotlin.collections.ArrayList
 class MainViewModel @Inject constructor(private val mainRepository: MainRepository) :
     BaseViewModel() {
     private var currentQuery: String = ""
-    val list : ArrayList<Message> = ArrayList()
+    val list: ArrayList<Message> = ArrayList()
 
 
     val query = MutableLiveData<String>()
@@ -44,6 +44,7 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
         currentQuery = query.value.toString().trim()
         if (currentQuery.isNotEmpty()) {
             mainRepository.sendMessage(Message(uniqueID, currentQuery))
+            query.value = ""
         }
     }
 }
