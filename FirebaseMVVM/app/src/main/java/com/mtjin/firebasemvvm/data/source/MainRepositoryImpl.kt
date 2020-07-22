@@ -4,6 +4,10 @@ import com.mtjin.firebasemvvm.data.Message
 import com.mtjin.firebasemvvm.data.source.local.MainLocalDataSource
 import com.mtjin.firebasemvvm.data.source.remote.MainRemoteDataSource
 import io.reactivex.Flowable
+import io.reactivex.Observable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(
@@ -12,7 +16,9 @@ class MainRepositoryImpl @Inject constructor(
 ) : MainRepository {
     override fun requestMessages(): Flowable<Message> {
         return mainRemoteDataSource.requestMessages().flatMap {
-            mainLocalDataSource.insertMessage(it).andThen(Flowable.just(it))
+            GlobalScope.launch(Dispatchers.IO) { mainLocalDataSource.insertMessage(it) }
+            Flowable.just(it)
+            //mainLocalDataSource.insertMessage(it).andThen(Flowable.just(it))
         }
     }
 

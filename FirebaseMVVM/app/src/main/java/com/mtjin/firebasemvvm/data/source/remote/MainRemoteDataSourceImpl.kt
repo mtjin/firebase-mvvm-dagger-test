@@ -44,10 +44,10 @@ class MainRemoteDataSourceImpl @Inject constructor(private val database: Databas
             }
             database.child("messages").addChildEventListener(messageChildEventListener)
             emitter.setCancellable {
+                Log.d("FFF" , "->캔슬됨")
                 database.child("messages").removeEventListener(messageChildEventListener)
             }
         }, BackpressureStrategy.BUFFER)
-
     }
 
     override fun sendMessage(message: Message) {

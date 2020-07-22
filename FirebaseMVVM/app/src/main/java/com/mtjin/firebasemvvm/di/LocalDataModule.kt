@@ -26,7 +26,7 @@ class LocalDataModule {
             context,
             MessageDatabase::class.java,
             "Message.db"
-        ).allowMainThreadQueries().build()
+        ).build()
     }
 
     @Provides
