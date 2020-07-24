@@ -17,7 +17,6 @@ class MainRemoteDataSourceImpl @Inject constructor(private val database: Databas
         return Flowable.create<Message>({ emitter ->
             val messageChildEventListener = object : ChildEventListener {
                 override fun onCancelled(error: DatabaseError) {
-                    Log.d("FFF", "Remote getMessages() onCancelled()  -> 에러")
                     emitter.onError(error.toException())
                 }
 
@@ -27,7 +26,6 @@ class MainRemoteDataSourceImpl @Inject constructor(private val database: Databas
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                     snapshot.getValue(Message::class.java)?.run {
-                        Log.d("FFF", this.toString())
                         emitter.onNext(this)
                     }
                 }
