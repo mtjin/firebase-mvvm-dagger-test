@@ -35,10 +35,13 @@ class MainViewModel @Inject constructor(
                 mainRepository.requestMessages()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe {
+                        Log.d("LLL", "시작시작")
+                        showProgressDialog() }
                     .subscribe({
-                        Log.d("FFFF", it.toString())
                         receiveMessageList.add(it)
                         _messageList.value = receiveMessageList
+                        hideProgressDialog()
                     }, {
                         Log.d("Error", it.message.toString())
                     })
@@ -49,8 +52,9 @@ class MainViewModel @Inject constructor(
                 mainRepository.requestLocalMessages()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { showProgressDialog() }
+                    .doAfterTerminate { hideProgressDialog() }
                     .subscribe({
-                        Log.d("FFF", "로컬데이터->" + it.toString())
                         it?.run {
                             receiveMessageList.addAll(this)
                             _messageList.value = receiveMessageList

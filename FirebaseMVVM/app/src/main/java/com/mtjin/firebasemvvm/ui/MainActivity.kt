@@ -1,7 +1,7 @@
 package com.mtjin.firebasemvvm.ui
 
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mtjin.firebasemvvm.R
@@ -38,6 +38,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         with(mainViewModel) {
             networkState.observe(this@MainActivity, Observer {
                 showToast("네트워크가 끊켜 있습니다. 로컬에서 불러옵니다")
+            })
+
+            isDialogLoading.observe(this@MainActivity, Observer { loadingState ->
+                Log.d("LLL -> ",""+ loadingState)
+                when (loadingState) {
+                    true -> showProgressDialog()
+                    false -> hideProgressDialog()
+                }
             })
         }
     }
