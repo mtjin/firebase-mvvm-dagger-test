@@ -41,7 +41,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             })
 
             isDialogLoading.observe(this@MainActivity, Observer { loadingState ->
-                Log.d("LLL -> ",""+ loadingState)
                 when (loadingState) {
                     true -> showProgressDialog()
                     false -> hideProgressDialog()
